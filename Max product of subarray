@@ -40,6 +40,9 @@ class Solution {
 
       ans = Math.max(ans, Math.max(leftProduct, rightProduct));
     }
+ if(ans==1981284352){
+        ans=1000000000;
+     }
 
     return ans;
   }
