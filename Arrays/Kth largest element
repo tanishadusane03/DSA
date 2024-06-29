@@ -1,0 +1,44 @@
+one most basic solution 
+1.  class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        int n=nums.length;
+         int B[]= new int[n];
+
+         for(int i=0;i<n;i++){
+            B[i]=nums[i];
+         }
+         Arrays.sort(nums);
+
+         return nums[n-k];
+    }
+}
+
+Using MIN HEAP
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+       PriorityQueue<Integer> mh= new PriorityQueue<>();
+       int n=nums.length;
+
+       for(int num:nums){
+                mh.add(num);
+                if(mh.size()>k){
+                    mh.poll();
+                }
+       }
+return mh.peek();
+    }
+}
+
+Using MAX HEAP
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(nums.length, (a, b) -> b - a);
+        for (int num : nums) {
+            maxHeap.offer(num);
+        }
+        for (int i = 0; i < k - 1; i++) {
+            maxHeap.poll();
+        }
+        return maxHeap.peek();
+    }
+}

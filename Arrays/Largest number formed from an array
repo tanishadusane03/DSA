@@ -1,0 +1,21 @@
+class Solution {
+    String printLargest(int n, String[] arr) {
+        Arrays.sort(arr,new Comparator<String>(){
+            public int compare(String a, String b){
+                String ab=a+b;
+                String ba=b+a;
+                
+                return ba.compareTo(ab);
+            }
+        }
+        );
+        // Concatenate the result
+        StringBuilder result = new StringBuilder();
+        for (int i=0;i<n;i++) {
+            result.append(arr[i]);
+        }
+        
+        return result.toString();
+    }
+
+}

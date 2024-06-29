@@ -1,0 +1,25 @@
+Chocolate Distribution Problem
+EasyAccuracy: 49.91%Submissions: 221K+Points: 2
+Be the comment of the day in POTD and win a GfG T-Shirt!
+Solve right now
+
+banner
+Given an array A[ ] of positive integers of size N, where each value represents the number of chocolates in a packet. Each packet can have a variable number of chocolates. There are M students, the task is to distribute chocolate packets among M students such that :
+1. Each student gets exactly one packet.
+2. The difference between maximum number of chocolates given to a student and minimum number of chocolates given to a student is minimum.
+
+class Solution
+{
+    public long findMinDiff (ArrayList<Integer> a, int n, int m)
+    {
+        Collections.sort(a);
+      long res=a.get(m-1)-a.get(0);
+      
+      for(int i=1;i<=n-m;i++){
+          
+          res=Math.min(res,a.get(i+m-1)-a.get(i));
+      }
+      return res;
+      
+    }
+}

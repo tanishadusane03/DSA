@@ -1,0 +1,43 @@
+class Solution{
+    
+  
+    int Countpair(int a[], int n, int k)
+    {
+        int i=0;
+        int j=n-1;
+        int c=0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+    
+        while(i<j){
+            
+            int sum=a[i]+a[j];
+            int diff=a[i]-a[j];
+             if(sum==k && map.containsKey(diff)==false){
+                 map.put(diff, map.getOrDefault(diff, 0) + 1);
+                 c++;
+             }
+             else if(sum==k && map.containsKey(diff)==true){
+                 i++;
+                 j--;
+             }
+             else if(sum<k){
+                 i++;
+             }
+             else{
+                  
+                 j--;
+                 
+             }
+             
+                 
+                       
+            
+        }
+        if(c==0){
+            return -1;
+        }
+        return c;
+    }
+  
+    
+}
