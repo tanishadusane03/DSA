@@ -1,0 +1,47 @@
+class Solution
+{
+    Node compute(Node head)
+    
+    {
+        head=reverse(head);
+       Node rhead=head;
+       
+       while(rhead!=null && rhead.next!=null){
+           if(rhead.data>rhead.next.data){
+               rhead.next=rhead.next.next;
+           }
+           else{
+               rhead=rhead.next;
+           }
+       }
+       
+       
+       
+       return reverse(head);
+       
+        
+    }
+    
+     Node reverse(Node head){
+        if(head==null){
+            return null;
+        }
+        if(head.next==null){
+            return head;
+        }
+        
+        Node prevnode=null;
+        Node currnode=head;
+        
+        while(currnode!=null){
+            Node nextnode=currnode.next;
+            currnode.next=prevnode;
+            prevnode=currnode;
+            currnode=nextnode;
+        }
+        
+        head=prevnode;
+        
+        return head;
+    }
+}
