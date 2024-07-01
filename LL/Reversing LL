@@ -23,3 +23,4 @@ class Solution {
         return prenode;
     }
 }
+take 3 pointers one before , one on the node and one on the next node . 
