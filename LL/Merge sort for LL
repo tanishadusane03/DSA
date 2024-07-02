@@ -1,0 +1,61 @@
+class Solution {
+    public static Node findMiddle(Node head) {
+        Node slow=head;
+        Node fast=head.next;
+        
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next;
+        }
+        
+        return slow;
+       
+    }
+
+    public static Node merge2(Node l1, Node l2) {
+       Node dummy=new Node(-1);
+       Node temp=dummy;
+       
+       while(l1!=null && l2!=null){
+           if(l1.data<l2.data){
+               temp.next=l1;
+               l1=l1.next;
+           }
+           else{
+               temp.next=l2;
+               l2=l2.next;
+           }
+           temp=temp.next;
+       }
+       if(l1!=null){
+           temp.next=l1;
+       }
+       else{
+           temp.next=l2;
+       }
+       
+       return dummy.next;
+    }
+
+    static Node mergeSort(Node head) {
+       if(head==null || head.next==null){
+           return head;
+       }
+       
+       Node middle=findMiddle(head);
+       Node lh=head;
+       Node rh=middle.next;
+       middle.next=null;
+       
+       //sorting the left side 
+       lh=mergeSort(lh);
+       rh=mergeSort(rh);
+       
+       Node fh=merge2(lh,rh);
+       
+       return fh;
+       
+       
+       
+    }
+}
