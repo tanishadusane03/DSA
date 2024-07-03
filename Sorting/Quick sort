@@ -1,0 +1,34 @@
+public void quickSort(int[] array, int start, int end) {
+		if (start < end) {
+			int pivot = start;
+			int i = start + 1;
+			int j = end;
+			while (i <=j) {
+				while (array[i] <= array[pivot] && i<=j) {
+					
+					i++;
+				}
+				while (array[j] > array[pivot] && i<=j) {
+					j--;
+				}
+				if (i < j) {
+					// swapping i and j
+					int temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+			}
+			// swapping the pivot element and j th element
+			int temp = array[pivot];
+			array[pivot] = array[j];
+			array[j] = temp;
+			//displayArray(array);
+			// recursion to sort left and right sub array
+			//System.out.println("Start:"+start+"\nend: "+(j-1));
+	
+			quickSort(array, start, j - 1);
+		
+			//displayArray(array);
+			//System.out.println("Start:"+(j+1)+"\nend: "+end);
+			quickSort(array, j + 1, 5);
+	}
