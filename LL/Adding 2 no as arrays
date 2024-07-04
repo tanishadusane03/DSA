@@ -1,0 +1,29 @@
+class Solution {
+    ArrayList<Integer> findSum(int a[], int b[]) {
+        int i = a.length - 1;
+        int j = b.length - 1;
+        int carry = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        while (i >= 0 || j >= 0 || carry != 0) {
+            int digit = carry;
+            
+            if (i >= 0) {
+                digit += a[i];
+                i--;
+            }
+            
+            if (j >= 0) {
+                digit += b[j];
+                j--;
+            }
+            
+            carry = digit / 10;
+            digit = digit % 10;
+            ans.add(digit);
+        }
+        
+        Collections.reverse(ans);
+        return ans;
+    }
+}
