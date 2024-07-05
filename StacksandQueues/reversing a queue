@@ -1,0 +1,18 @@
+class GfG{
+    //Function to reverse the queue.
+    public Queue<Integer> rev(Queue<Integer> q){
+        
+        Queue<Integer> rev=new LinkedList<>();
+        int n=q.size();
+        Stack<Integer> s=new Stack<>();
+        
+        while(!q.isEmpty()){
+            s.push(q.poll());
+            
+        }
+       while(!s.isEmpty()){
+           rev.offer(s.pop());
+       }
+      return rev;
+    }
+}
