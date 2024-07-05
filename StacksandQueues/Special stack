@@ -1,0 +1,50 @@
+
+
+/*Complete the function(s) below*/
+class GfG{
+    
+    Stack<Integer> s2=new Stack<>();
+	public void push(int a,Stack<Integer> s)
+	{
+	    s.push(a);
+	    if(s2.isEmpty()){
+	        s2.push(a);
+	    }
+	    else{
+	        int b=s2.peek();
+	        if(a<b){
+	            s2.push(a);
+	        }
+	    }
+	}
+	public int pop(Stack<Integer> s)
+        {
+            int c=s.pop();
+            if(c==s2.peek()){
+                s2.pop();
+            }
+            
+            return c;
+	}
+	public int min(Stack<Integer> s)
+        {
+           return s2.peek();
+	}
+	public boolean isFull(Stack<Integer>s, int n)
+        {
+           if(s.size()==n){
+               return true;
+           }else{
+               return false;
+           }
+	}
+	public boolean isEmpty(Stack<Integer>s)
+        {
+          if(s.size()==0){
+              return true;
+          }
+          else{
+              return false;
+          }
+	}
+}
