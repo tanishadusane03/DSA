@@ -1,0 +1,24 @@
+one method 
+class Solution {
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    // Function to count inversions in the array.
+    static long inversionCount(long a[], int n) {
+        // Your Code Here
+        long count =0;
+        for(int i=0;i<n-1;i++){
+            int j=n-1;
+            
+            while(i<j){
+                if(a[j]<a[i]){
+                count++;
+            }
+            j--;
+            
+        }
+        }
+        return count ;
+    }
+}
+
+but its O(n2) hence not this only passes for a few
