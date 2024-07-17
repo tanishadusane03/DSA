@@ -1,0 +1,27 @@
+class Solution
+{
+    //Function to merge the arrays.
+    public static void merge(long arr1[], long arr2[], int n, int m) 
+    {
+        int i=0;
+        int k=n-1;
+        int j=0;
+        
+        while(i<=k && j<m){
+            if(arr2[j]<arr1[i]){
+               long temp=arr1[k];
+               arr1[k]=arr2[j];
+               arr2[j]=temp;
+                k--;
+                j++;
+            }
+            else{
+                i++;
+            }
+        }
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        
+    }
+    
+}
