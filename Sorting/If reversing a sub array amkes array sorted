@@ -1,0 +1,33 @@
+static boolean sortArr(int[] a, int n) {
+    int x = -1, y = -1;
+
+    // Find the first index where the order is incorrect
+    for (int i = 0; i < n - 1; i++) {
+        if (a[i] > a[i + 1]) {
+            x = i;
+            break;
+        }
+    }
+
+    // Find the last index where the order is incorrect
+    for (int i = n - 1; i > 0; i--) {
+        if (a[i] < a[i - 1]) {
+            y = i;
+            break;
+        }
+    }
+
+    // If the array is not sorted and we found indices to reverse
+    if (x != -1 && y != -1) {
+        reverse(a, x, y);
+
+        // Check if the array is sorted now
+        for (int i = 0; i < n - 1; i++) {
+            if (a[i] > a[i + 1]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
