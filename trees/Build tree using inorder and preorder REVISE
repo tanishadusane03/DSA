@@ -1,0 +1,33 @@
+class Solution {
+    int preindex = 0;
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int n = preorder.length;
+        return splittree(preorder, inorder, 0, n - 1);
+    }
+
+    private TreeNode splittree(int[] preorder, int[] inorder, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+
+        // Create a new TreeNode with the current preindex value from preorder
+        TreeNode root = new TreeNode(preorder[preindex]);
+        preindex++;
+
+        // Find the index of the current root in inorder array
+        int inindex = 0;
+        for (int i = start; i <= end; i++) {
+            if (inorder[i] == root.val) {
+                inindex = i;
+                break;
+            }
+        }
+
+        // Recursively construct the left and right subtrees
+        root.left = splittree(preorder, inorder, start, inindex - 1);
+        root.right = splittree(preorder, inorder, inindex + 1, end);
+
+        return root;
+    }
+}
