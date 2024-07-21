@@ -1,0 +1,35 @@
+class Solution {
+    // Function to return the diameter of a Binary Tree.
+    int diameter(Node root) {
+       Stack<Node> s=new Stack<>();
+       HashMap<Node,Integer> mp=new HashMap<>();
+       if(root!=null){
+           s.push(root);
+       }
+       int d=0;
+       
+       while(!s.isEmpty()){
+           Node curr=s.peek();
+           
+           if(curr.left!=null && !mp.containsKey(curr.left)){
+               s.push(curr.left);
+           }
+           else if(curr.right!=null && !mp.containsKey(curr.right)){
+               s.push(curr.right);
+           }
+           else{
+               s.pop();
+               int leftdepth=mp.getOrDefault(curr.left,0);
+               int rightdepth=mp.getOrDefault(curr.right,0);
+               
+               mp.put(curr,1+Math.max(leftdepth,rightdepth));
+               d=Math.max(d,leftdepth+rightdepth);
+               
+           }
+       }
+       
+       return d+1;
+       
+    }
+}
+
