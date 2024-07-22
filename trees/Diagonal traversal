@@ -1,0 +1,50 @@
+class Pair{
+    Node node;
+    int dl;
+    
+    Pair(Node node,int dl){
+        this.node=node;
+        this.dl=dl;
+    }
+}
+class Tree {
+    public ArrayList<Integer> diagonal(Node root) {
+        if (root == null) {
+            return new ArrayList<>(); // Return an empty list for null root
+        }
+        
+        Stack<Pair> s = new Stack<Pair>();
+        Map<Integer, ArrayList<Integer>> map = new TreeMap<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        s.push(new Pair(root, 0));
+        
+        while (!s.isEmpty()) {
+            Pair curr = s.pop();
+            Node temp = curr.node;
+            int dl = curr.dl;
+            
+            // Add the current node to the correct diagonal list
+            if (!map.containsKey(dl)) {
+                map.put(dl, new ArrayList<>());
+            }
+            map.get(dl).add(temp.data);
+            
+            // Process the right child at the same diagonal level
+            if (temp.right != null) {
+                s.push(new Pair(temp.right, dl));
+            }
+            // Process the left child at the next diagonal level
+            if (temp.left != null) {
+                s.push(new Pair(temp.left, dl + 1));
+            }
+        }
+        
+        // Collect results from the map
+        for (Map.Entry<Integer, ArrayList<Integer>> entry : map.entrySet()) {
+            ans.addAll(entry.getValue());
+        }
+        
+        return ans;
+    }
+}
