@@ -1,0 +1,75 @@
+class Solution
+{
+	ArrayList <Integer> boundary(Node node)
+	{
+	    ArrayList<Integer> res=new ArrayList<>();
+	    if(node==null){
+	        return res;
+	    }
+	    if(!isleaf(node)){
+	        res.add(node.data);
+	    }
+	    leftboundary(res,node);
+	    leafnode(res,node);
+	    rightboundary(res,node);
+	    
+	    return res;
+	    
+	    
+	}
+	public boolean isleaf(Node node){
+	    if(node.left==null && node.right==null){
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
+	public void leftboundary(ArrayList<Integer> res,Node node){
+	    Node leftnode=node.left;
+	    
+	    while(leftnode!=null){
+	        if(isleaf(leftnode)){
+	        break;
+	    }
+	        if(leftnode.left!=null){
+	            res.add(leftnode.data);
+	            leftnode=leftnode.left;
+	        }else{
+	            res.add(leftnode.data);
+	            leftnode=leftnode.right;
+	        }
+	    }
+	    
+	    
+	}
+	public void leafnode(ArrayList<Integer> res, Node node){
+	    if(node==null){
+	        return;
+	    }
+	    if(isleaf(node)){
+	        res.add(node.data);
+	    }
+	    leafnode(res,node.left);
+	    leafnode(res,node.right);
+	}
+	public void rightboundary(ArrayList<Integer> res,Node node){
+	    Stack<Integer> s=new Stack<>();
+	    Node rightnode=node.right;
+	    
+	    while(rightnode!=null){
+	        if(isleaf(rightnode)){
+	        break;
+	    }
+	    s.push(rightnode.data);
+	        if(rightnode.right!=null){
+	            rightnode=rightnode.right;
+	        }else{
+	            rightnode=rightnode.left;
+	        }
+	    }
+	    while(!s.isEmpty()){
+	        res.add(s.pop());
+	    }
+	}
+}
