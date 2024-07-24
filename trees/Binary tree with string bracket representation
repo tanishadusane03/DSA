@@ -1,0 +1,28 @@
+class Solution {
+    static int idx;
+    public static Node treeFromString(String s) {
+        idx = 0;
+        return solve(s);
+    }
+    public static Node solve(String str){
+        if(idx>=str.length()){
+            return null;
+        }
+        StringBuilder sb = new StringBuilder("");
+        while(idx<str.length() && str.charAt(idx)>='0' && str.charAt(idx)<='9'){
+            sb.append(str.charAt(idx++));
+        }
+        Node ans = new Node(Integer.parseInt(sb.toString()));
+        
+        if(idx<str.length() && str.charAt(idx)=='('){
+            idx++;
+            ans.left = solve(str);
+        }
+        if(idx<str.length() && str.charAt(idx)=='('){
+            idx++;
+            ans.right = solve(str);
+        }
+        idx++;
+        return ans;
+    }
+}
