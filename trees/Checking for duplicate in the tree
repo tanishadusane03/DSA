@@ -1,0 +1,33 @@
+class Solution {
+    int dupSub(Node root) {
+        // Create a map to store subtree strings and their frequencies
+        HashMap<String, Integer> mp = new HashMap<>();
+        // Start the recursive solving process
+        solve(root, mp);
+        // Check the map for duplicate subtrees
+        for (String key : mp.keySet()) {
+            if (mp.get(key) >= 2 && key.length() >= 2) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    // Helper function to recursively get subtree strings
+    public static String solve(Node root, HashMap<String, Integer> mp) {
+        if (root == null) {
+            return "$"; // Representing null with a special character
+        }
+        // For leaf nodes, simply return their value as a string
+        if (root.left == null && root.right == null) {
+            return String.valueOf(root.data);
+        }
+        // Build the subtree string
+        String l=solve(root.left, mp);
+        String r=solve(root.right, mp);
+        String s = root.data + "," + l + "," +r ;
+        // Update the frequency map
+        mp.put(s, mp.getOrDefault(s, 0) + 1);
+        return s;
+    }
+}
