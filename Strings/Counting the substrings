@@ -1,0 +1,38 @@
+class Solution {
+    public int countSubstrings(String s) {
+        int c=1;
+        int n=s.length();
+        if(s.length()==1){
+            return 1;
+        }
+        
+        for(int i=1;i<n;i++){
+            int low=i;
+            int high=i;
+
+          while(s.charAt(low)==s.charAt(high)){
+            low--;
+            high++;
+            c++;
+            if(low == -1 || high==n){
+                break;
+            }
+          }
+          low=i-1;
+          high=i;
+
+          while(s.charAt(low)==s.charAt(high)){
+            low--;
+            high++;
+            c++;
+            if(low == -1 || high==n){
+                break;
+            }
+          }
+
+
+        }
+        return c;
+    }
+   
+}
