@@ -1,0 +1,25 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        HashMap<Character,Integer> map =new HashMap<>();
+        int n=s.length();
+        int maxlength=0;
+        int maxcountofrl=0;
+        int start=0;
+        int end=0;
+
+        for(end=0;end<n;end++){
+            char rightchar=s.charAt(end);
+            map.put(rightchar,map.getOrDefault(rightchar,0)+1);
+            maxcountofrl=Math.max(maxcountofrl,map.get(rightchar));
+            int ltn=end-start+1;
+            if(ltn-maxcountofrl>k){
+                char leftchar=s.charAt(start);
+                map.put(leftchar,map.getOrDefault(leftchar,0)-1);
+                start++;
+            }
+            maxlength=Math.max(maxlength,end-start+1);
+        }
+
+        return maxlength;
+    }
+}
