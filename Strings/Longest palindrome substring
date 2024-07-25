@@ -1,0 +1,90 @@
+One approach but time limit gets exceeded
+
+class Solution {
+    public String longestPalindrome(String s) {
+        int n=s.length();
+        if(n<=1){
+            return s;
+        }
+        
+        int maxl=0;
+        String ans="";
+
+        for(int i=0;i<n-1;i++){
+            StringBuilder sb=new StringBuilder();
+            for(int j=i;j<n;j++){
+                 sb.append(s.charAt(j));
+                 if(ispalindrome(sb.toString())){
+                    if(sb.length()>maxl){
+                        maxl=sb.length();
+                        ans=sb.toString();
+                    }
+                 }
+
+            }
+        }
+
+      return ans;  
+    }
+    boolean ispalindrome(String str){
+        int m=str.length();
+        int start=0;
+        int end=m-1;
+        while(start<end){
+            if(str.charAt(start)==str.charAt(end)){
+                start++;
+                end--;
+            }
+            else{
+                return false;
+            }
+            
+        }
+return true;
+    }
+}
+
+
+BETTER OPTIMAL SOLUTION 
+
+class Solution {
+    public String longestPalindrome(String str) {
+   if(str.length()<=1){
+    return str;
+   }
+int n=str.length();
+   String ans="";
+   for(int i=1;i<n;i++){
+         int low=i;
+         int high=i;
+while(str.charAt(low)==str.charAt(high)){
+      low--;
+      high++;
+      
+        if(low == -1 || high == n){
+            break;
+        }
+}
+String palindrome=str.substring(low+1,high);
+if(palindrome.length()>ans.length()){
+    ans=palindrome;
+    
+}
+         low=i-1;
+          high=i;
+while(str.charAt(low)==str.charAt(high)){
+      low--;
+      high++;
+      if(low == -1 || high == n){
+            break;
+        }
+}
+ palindrome=str.substring(low+1,high);
+if(palindrome.length()>ans.length()){
+    ans=palindrome;
+}
+
+   }
+   return ans ;
+}
+}
