@@ -1,0 +1,35 @@
+class Solution {
+    int lps(String s) {
+        int n = s.length();
+        int[] lps = new int[n];
+        
+        // Initialize length of previous longest prefix suffix
+        int length = 0;
+        
+        // LPS[0] is always 0
+        lps[0] = 0;
+        
+        // Start from the second character
+        int i = 1;
+        
+        // Build the LPS array
+        while (i < n) {
+            if (s.charAt(i) == s.charAt(length)) {
+                length++;
+                lps[i] = length;
+                i++;
+            } else {
+                if (length != 0) {
+                    // Use the previous longest prefix suffix length
+                    length = lps[length - 1];
+                } else {
+                    lps[i] = 0;
+                    i++;
+                }
+            }
+        }
+        
+        // The last value of lps is the result
+        return lps[n - 1];
+    }
+}
