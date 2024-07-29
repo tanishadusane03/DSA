@@ -1,0 +1,47 @@
+class Solution
+{
+    int transform (String A, String B)
+    {
+        
+        int a=A.length();
+        int b=B.length();
+        int count=0;
+        HashMap<Character,Integer> map=new HashMap<>();
+        for(int i=0;i<a;i++){
+            char c=A.charAt(i);
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+         for(int i=0;i<b;i++){
+            char d=B.charAt(i);
+            if(map.containsKey(d)){
+                map.put(d,map.get(d)-1);
+            }
+            else{
+                map.put(d,map.getOrDefault(d,0)+1);
+            }
+        }
+        for(Map.Entry<Character,Integer> entry :map.entrySet()){
+            int val=entry.getValue();
+            if(val!=0){
+                return -1;
+            }
+        }
+       
+        int i=a-1;
+        int j=b-1;
+        while(i>=0 && j>=0){
+            if(A.charAt(i)==B.charAt(j)){
+                i--;
+                j--;
+            }
+            else{
+               
+                    i--;
+                    count++;
+                
+            }
+        }
+        return count;
+        
+    }
+}
