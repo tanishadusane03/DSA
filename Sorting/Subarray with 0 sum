@@ -1,0 +1,29 @@
+class Solution {
+    // Function to count subarrays with sum equal to 0.
+    public static long findSubarray(long[] arr ,int n) {
+        // HashMap to store the frequency of prefix sums
+        HashMap<Long, Integer> map = new HashMap<>();
+
+        long sum = 0;
+        long count = 0;
+
+        // Initialize the frequency of sum 0 as 1
+        map.put(0L, 1);
+
+        // Traverse through the given array
+        for (int i = 0; i < n; i++) {
+            // Add current element to sum
+            sum += arr[i];
+
+            // If the sum is already present in the map, it means there are subarrays
+            // with sum zero ending at the current index.
+            if (map.containsKey(sum)) {
+                count += map.get(sum);
+                map.put(sum, map.get(sum) + 1);
+            } else {
+                map.put(sum, 1);
+            }
+        }
+        return count;
+    }
+}
