@@ -19,8 +19,8 @@ lass Solution{
             }
             col++;
         }
-        col=N-1;
-        row=1;
+        col--;
+        row++;
         while(row<N){
              int r=row;
             int c=col;
