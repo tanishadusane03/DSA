@@ -1,0 +1,23 @@
+class Solution {
+    public void sortColors(int[] nums) {
+        int[] count = new int[3];  // Array to hold counts of 0s, 1s, and 2s
+
+        // Count the occurrences of each number (0, 1, 2)
+        for (int i = 0; i < nums.length; i++) {
+            count[nums[i]]++;
+          }
+
+
+        // Overwrite the nums array with the sorted order
+        int index = 0;
+        for (int i = 0; i < count[0]; i++) {
+            nums[index++] = 0;
+        }
+        for (int i = 0; i < count[1]; i++) {
+            nums[index++] = 1;
+        }
+        for (int i = 0; i < count[2]; i++) {
+            nums[index++] = 2;
+        }
+    }
+}
