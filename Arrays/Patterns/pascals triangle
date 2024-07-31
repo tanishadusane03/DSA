@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        ArrayList<List<Integer>> list=new ArrayList<>();
+        if(numRows==0){
+            return list;
+        }
+        ArrayList first=new ArrayList<>();
+        first.add(1);
+        list.add(first);
+        if(numRows==1){
+           return list;
+        }
+        for(int i=1;i<numRows;i++){ //i is the pointer for the numrow 
+            List<Integer> prev=list.get(i-1);
+            List<Integer> curr=new ArrayList<>();
+            curr.add(1);
+            for(int j=0;j<i-1;j++){ //j is the pointer for the list //j<i-1 importnt
+              curr.add(prev.get(j)+prev.get(j+1));
+            }
+            curr.add(1);
+            list.add(curr);
+        }
+        return list;
+    }
+}
