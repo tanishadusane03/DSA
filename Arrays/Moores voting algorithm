@@ -1,0 +1,20 @@
+int vote=0;
+        int ans = 0;
+        int len=nums.length; 
+        for(int i=0;i<len;i++){
+           if(vote==0){
+               ans = nums[i];
+               vote++;
+           }
+           else{
+               if(ans==nums[i]){
+                   vote++;
+               }
+               else{
+                   vote--;
+               }
+           }
+        }
+        return ans;
+        
+    }
