@@ -1,0 +1,33 @@
+class Solution {
+    public String reverseWords(String s) {
+        if(s.length()==1){
+            return s;
+        }
+        s='*'+ s +'*';
+         int n=s.length();
+         
+        
+         StringBuilder temp = new StringBuilder();
+        int i=n-1;
+        int j=n-1;
+        while(i>=0 || j>=0){
+            while(i>=0 && !Character.isLetterOrDigit(s.charAt(i))){
+                i--;
+                j--;
+            }
+            while(i>=0 && Character.isLetterOrDigit(s.charAt(i))){
+                i--;
+            }
+            if (i < j) {
+                if (temp.length() > 0) {
+                    temp.append(' ');
+                }
+                temp.append(s.substring(i + 1, j + 1));
+            }
+            j=i;
+            
+        }
+        return temp.toString();
+        
+    }
+}
