@@ -1,0 +1,39 @@
+class Solution {
+    int d = 256;
+    int mod = 101; // handle overflow - choose preferably prime
+    ArrayList<Integer> search(String pat, String text) {
+        int n = text.length(); int m = pat.length();
+        ArrayList<Integer> al = new ArrayList<Integer>();
+
+        // computing d^(m-1); m is pattern length; // calculating weighted
+        long h=1;
+        for(int i=1; i<=m-1; i++)
+            h = (h*d)%mod;
+
+        // computing hash for pattern in p and text in t
+        long p=0, t=0;
+        for(int i=0; i<m; i++) {
+            p = (p*d + pat.charAt(i))%mod;
+            t = (t*d + text.charAt(i))%mod;
+        }
+
+        for(int i=0; i<=n-m; i++){
+            if(p==t){ // handling superious hit
+                boolean flag = true;
+                for(int j=0; j<m; j++){
+                    if(text.charAt(i+j)!= pat.charAt(j)){
+                        flag=false; break;
+                    }
+                }
+                if(flag)
+                    al.add(i+1);
+            }
+            // rolling hash - compute next hash using previous hash
+            if(i<n-m){
+                t = (d*(t - text.charAt(i)*h) + text.charAt(i+m))%mod;
+                if(t<0) t=t+mod;
+            }
+        }
+        return al;
+    }
+}
