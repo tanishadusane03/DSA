@@ -1,0 +1,46 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int m = needle.length();
+        int n = haystack.length();
+        long d = 256;
+        long mod = 101;
+
+        if (m == 0) return 0; // If needle is empty, return 0
+        if (n == 0 || n < m) return -1; // If haystack is empty or shorter than needle, return -1
+
+        long h = 1;
+        for (int i = 1; i <= m - 1; i++) {
+            h = (h * d) % mod;
+        }
+
+        long p = 0;
+        long t = 0;
+        for (int i = 0; i < m; i++) {
+            p = (p * d + needle.charAt(i)) % mod;
+            t = (t * d + haystack.charAt(i)) % mod;
+        }
+
+        for (int i = 0; i <= n - m; i++) {
+            if (p == t) {
+                boolean flag = true;
+                for (int j = 0; j < m; j++) {
+                    if (haystack.charAt(i + j) != needle.charAt(j)) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag == true) {
+                    return i;
+                }
+            }
+            if (i < n - m) {
+                t = (d * (t - haystack.charAt(i) * h) + haystack.charAt(i + m)) % mod;
+                if (t < 0) {
+                    t = t + mod;
+                }
+            }
+        }
+
+        return -1;
+    }
+}
