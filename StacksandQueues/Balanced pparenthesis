@@ -1,0 +1,35 @@
+public class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> st = new Stack<>();
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            char curr = s.charAt(i);
+
+            // If the current character is an opening bracket, push it onto the stack
+            if (curr == '(' || curr == '[' || curr == '{') {
+                st.push(curr);
+            } 
+            // If the current character is a closing bracket
+            else {
+                // Check if the stack is empty (no corresponding opening bracket)
+                if (st.isEmpty()) {
+                    return false;
+                }
+
+                // Check if the top of the stack matches the current closing bracket
+                char top = st.peek();
+                if ((curr == ')' && top == '(') || 
+                    (curr == ']' && top == '[') || 
+                    (curr == '}' && top == '{')) {
+                    st.pop();
+                } else {
+                    return false; // Mismatched closing bracket
+                }
+            }
+        }
+
+        // If the stack is empty, all opening brackets were matched; otherwise, invalid
+        return st.isEmpty();
+    }
+    }
