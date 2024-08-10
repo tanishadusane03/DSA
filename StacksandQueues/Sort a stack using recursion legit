@@ -1,0 +1,25 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static void sortStack(Stack<Integer> stack) {
+		if(stack.isEmpty()){
+			return;
+		}
+
+		int temp=stack.pop();
+		sortStack(stack);
+		insertAtcorrectplace(stack, temp);
+			}
+			static void  insertAtcorrectplace(Stack<Integer> stack,int temp){
+				if(stack.isEmpty() || stack.peek()<temp){
+					stack.push(temp);
+					return;
+				}
+
+				int ele=stack.pop();
+				insertAtcorrectplace(stack, temp);
+				stack.push(ele);
+			}
+
+}
