@@ -1,0 +1,52 @@
+class MyQueue {
+    Stack<Integer> input;
+    Stack<Integer> output;
+
+
+
+    public MyQueue() {
+        input=new Stack<Integer>();
+        output=new Stack<Integer>();
+        
+    }
+    
+    public void push(int x) {
+        input.push(x);
+        
+    }
+    
+    public int pop() {
+        if(!output.isEmpty()){
+          return output.pop();
+        }
+        else{
+            while(!input.isEmpty()){
+                output.add(input.pop());
+            }
+            return output.pop();
+        }
+        
+    }
+    
+    public int peek() {
+         if(!output.isEmpty()){
+          return output.peek();
+        }
+        else{
+            while(!input.isEmpty()){
+                output.add(input.pop());
+            }
+            return output.peek();
+        }
+    }
+    
+    public boolean empty() {
+    if (!output.isEmpty()) {
+        return false;
+    } else {
+        return input.isEmpty();
+    }
+}
+
+}
+
