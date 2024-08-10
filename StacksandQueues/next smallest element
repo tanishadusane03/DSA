@@ -1,31 +1,27 @@
-class Solution {
-	public static int[] help_classmate(int arr[], int n) 
-	{ 
-	    int[] res= new int[n];
-	    Stack<Integer> s=new Stack<>();
-	    
-	    for(int i=n-1;i>=0;i--){
-	        int a =arr[i];
-	        
-	        if(s.isEmpty()){
-	            s.push(a);
-	            res[i]=-1;
-	            continue;
-	        }
-	        
-	        while (!s.isEmpty() && s.peek() >= a) {
-                s.pop();
+public class Solution {
+    public int[] prevSmaller(int[] A) {
+        int n = A.length;
+        int[] result = new int[n];
+        Stack<Integer> st = new Stack<>();
+        
+        for (int i = 0; i < n; i++) {
+            // While stack is not empty and the top of the stack is greater than or equal to A[i]
+            while (!st.isEmpty() && st.peek() >= A[i]) {
+                st.pop();
             }
-	        
-	        if(s.isEmpty()){
-	            res[i]=-1;
-	        }
-	        else{
-	            res[i]=s.peek();
-	            
-	        }
-	        s.push(a);
-	    }
-	    return res;
-	} 
+            
+            // If the stack is empty, no smaller element exists, otherwise top of the stack is the previous smaller element
+            if(st.isEmpty()){
+                result[i]=-1;
+            }
+            else{
+                result[i]=st.peek();
+            }
+            
+            // Push the current element onto the stack
+            st.push(A[i]);
+        }
+        
+        return result;
+    }
 }
