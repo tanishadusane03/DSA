@@ -1,0 +1,28 @@
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        int n=nums.length;
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer> ds=new ArrayList<>();
+        findsub(nums,ans,ds,0,n);
+        return ans;
+
+
+        
+    }
+    static void findsub(int[] nums,List<List<Integer>> ans, List<Integer> ds,int ind,int n){
+        if(ind==n){
+            ans.add(new ArrayList<>(ds));
+            return;
+        }
+        // this is picking the element 
+        ds.add(nums[ind]);
+        //now recur and backtrack for the picking 
+        findsub(nums,ans,ds,ind+1,n);
+
+        //now if we are not picking 
+        ds.remove(ds.size()-1);
+        // backtracking for the not picking the subsets 
+        findsub(nums,ans,ds,ind+1,n); 
+
+    }
+}
