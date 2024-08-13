@@ -18,8 +18,10 @@ class Solution {
         }
 
         if(candidates[ind]<=target){
+                // if we are picking the element at the same index
             ds.add(candidates[ind]);
             findsum(ds,ans,target-candidates[ind],candidates,ind,n);
+            // if we are not picing the element at the same index
             ds.remove(ds.size()-1);
         }
         findsum(ds,ans,target,candidates,ind+1,n);
