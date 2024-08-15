@@ -1,0 +1,39 @@
+public class Solution {
+    public static List < Integer > getPreOrderTraversal(TreeNode root) {
+    	// Write your code here.
+		List<Integer> ans=new ArrayList<>();
+		if(root==null){
+			return ans;
+		}
+		preorder(root,ans);
+		return ans;
+    }
+	static void preorder(TreeNode root,List<Integer> ans){
+       if(root==null){
+        return;
+       }
+       TreeNode curr=root;
+       while(curr!=null){
+        if(curr.left==null){ // that means we have the NODE 
+        ans.add(curr.data);
+        curr=curr.right;  
+        }
+        else{ // we need to iterate to the right most eleemtn 
+        TreeNode prev=curr.left;
+        while(prev.right!=null && prev.right!=curr){
+            prev=prev.right;
+        }
+        if(prev.right==null){
+            prev.right=curr;
+			ans.add(curr.data);
+            curr=curr.left;
+        }
+        else{
+            prev.right=null;
+            curr=curr.right;
+        }
+
+        }
+       }
+    }
+}
