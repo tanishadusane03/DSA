@@ -1,0 +1,49 @@
+class Solution {
+    public List<List<Integer>> verticalTraversal(TreeNode root) {
+        Queue<Pair> q=new LinkedList<>();
+        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> map=new TreeMap<>();
+        q.offer(new Pair(root,0,0));
+        while(!q.isEmpty()){
+            Pair p=q.poll();
+            TreeNode node=p.node;
+            int row=p.row;
+            int col=p.col;
+            if(!map.containsKey(row)){
+                map.put(row,new TreeMap<>());
+            }
+            if(!map.get(row).containsKey(col)){
+                map.get(row).put(col,new PriorityQueue<>());
+            }
+            map.get(row).get(col).offer(node.val);
+            if(node.left!=null){
+                q.offer(new Pair(node.left,row-1,col+1));
+            }
+            if(node.right!=null){
+                q.offer(new Pair(node.right,row+1,col+1));
+            }
+        }
+        List<List<Integer>> list=new ArrayList<>();
+        for(TreeMap<Integer,PriorityQueue<Integer>> ys : map.values()){
+            list.add(new ArrayList<>());
+            for(PriorityQueue<Integer> nodes : ys.values()){
+                while(!nodes.isEmpty()){
+                    list.get(list.size()-1).add(nodes.poll());
+                }
+
+            }
+        }
+        return list;
+       
+    }
+}
+class Pair {
+    TreeNode node;
+    int row;
+    int col;
+
+    public Pair(TreeNode node, int row,int col) {
+        this.node = node;
+        this.row = row;
+        this.col=col;
+    }
+}
