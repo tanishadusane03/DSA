@@ -1,0 +1,32 @@
+class Solution {
+    public static ArrayList<ArrayList<Integer>> Paths(Node root) {
+        ArrayList<ArrayList<Integer>> list=new ArrayList<>();
+        if(root==null){
+            return list;
+        }
+        find(list,root,new ArrayList<>());
+        return list;
+    }
+    static void find(ArrayList<ArrayList<Integer>> list,Node node,ArrayList<Integer> temp){
+        
+        if (node == null) {
+        return;
+    }
+
+    // Add the current node to the path
+    temp.add(node.data);
+
+    // If it's a leaf node, add the path to the list
+    if (node.left == null && node.right == null) {
+        list.add(new ArrayList<>(temp));
+    } else {
+        // Recurse on the left and right child
+        find(list, node.left, temp);
+        find(list, node.right, temp);
+    }
+
+    // Remove the current node from the path before going back up
+    temp.remove(temp.size() - 1);
+    }
+}
+        
