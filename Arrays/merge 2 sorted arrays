@@ -1,0 +1,14 @@
+function merge(nums1, m, nums2, n):
+    i = m - 1  // Pointer for the last element in nums1's valid part
+    j = n - 1  // Pointer for the last element in nums2
+    k = m + n - 1  // Pointer for the last position in nums1
+    
+    while j >= 0:  // Continue until all elements from nums2 are merged
+        if i >= 0 and nums1[i] > nums2[j]:
+            nums1[k] = nums1[i]  // Place the larger element from nums1
+            i = i - 1  // Move the pointer in nums1
+        else:
+            nums1[k] = nums2[j]  // Place the larger element from nums2
+            j = j - 1  // Move the pointer in nums2
+        
+        k = k - 1  // Move the pointer in nums1 for the next placement
