@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k) {
+        int size=arr.size();
+        k=k%size;
+        reverse(0,size-1,arr);
+        reverse(0,size-k-1,arr);
+        reverse(size-k,size-1,arr);
+        return arr;
+    }
+   static void reverse(int ele1, int ele2, ArrayList<Integer> arr){
+        while(ele1<ele2){
+            swap(ele1,ele2,arr);
+            ele1++;
+            ele2--;
+        }
+    }
+   static void swap(int a,int b,ArrayList<Integer> arr){
+        int temp=arr.get(a);
+        arr.set(a, arr.get(b));  // Use set() to modify the element at index a
+        arr.set(b, temp); 
+    }
+}
