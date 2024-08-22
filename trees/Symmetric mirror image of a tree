@@ -1,0 +1,24 @@
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+        return issym(root.left,root.right);
+
+        
+    }
+    static boolean issym(TreeNode left,TreeNode right){
+        if(left==null || right==null){
+            return left==right;
+        }
+        if(left.val!=right.val){
+            return false;
+        }
+    if(issym(left.left,right.right)&& issym(left.right,right.left)){
+        return true;
+    }
+    else{
+        return false;
+    }
+    }
+}
