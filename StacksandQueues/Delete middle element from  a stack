@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void deleteMiddle(Stack<Integer> inputStack, int N) 
+    {
+        
+        // Initializing temporary stack
+        Stack<Integer> tempStack = new Stack<>(); 
+        int count = 0;
+        
+        // Reducing N by 1 to make sure that for even terms, first middle is removed
+        N = N - 1; 
+
+        
+        // Storing elements from input stack to temporary stack
+        while (count != N / 2) 
+        { 
+            tempStack.push(inputStack.peek());
+            inputStack.pop();
+            count = count + 1;
+        }
+
+        // Deleting the middle element
+        inputStack.pop(); 
+
+        // Storing elements back to input stack
+        while (!tempStack.empty()) 
+        { 
+            inputStack.push(tempStack.peek());
+            tempStack.pop();
+        }
+    }
+}
