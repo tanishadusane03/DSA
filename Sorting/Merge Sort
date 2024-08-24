@@ -1,54 +1,49 @@
-public class MergeSort {
-  
-  public static void mergeSort(int[] arr, int numberOfElements) {
-    if (numberOfElements < 2) {
-      return;
-    }
 
-    // Find the middle position and create left and right partitions
-    int mid = numberOfElements/2;
-    int[] leftArr = new int[mid];
-    int[] rightArr = new int[numberOfElements - mid];
+import java.util.*;
+public class Solution {
+	public static void mergeSort(int[] arr, int n) {
+		int low=0;
+		int high=n-1;
+		mergeS(arr,low,high);
 
-    // Fill up the partitions
-    for (int i = 0; i < mid; i++) {
-      leftArr[i] = arr[i];
-    }
-    
-    for (int i = mid; i < numberOfElements; i++) {
-      rightArr[i- mid] = arr[i];
-    }
+	}
+	static void merge(int[] arr,int low,int high,int mid){
+		ArrayList<Integer> temp=new ArrayList<>();
+		
+		int left=low;
+		int right=mid+1;
 
-    // Apply merge sort on the left parition
-    mergeSort(leftArr, mid);
+		while(left<=mid && right<=high){
+			if(arr[left]<=arr[right]){
+				temp.add(arr[left]);
+				left++;
+			}
+			else{
+				temp.add(arr[right]);
+				right++;
+			}
+		}
+		while(left<=mid){
+			temp.add(arr[left]);
+			left++;
+		}
+		while(right<=high){
+			temp.add(arr[right]);
+			right++;
+		}
+		for(int i=low;i<=high;i++){
+			arr[i]=temp.get(i-low);
+		}
 
-    // Apply merge sort on the right partition
-    mergeSort(rightArr, numberOfElements  - mid);
-
-    // Finally merge the partitions
-    merge(arr, leftArr, rightArr, mid, numberOfElements - mid);
-  }
-
-  private static void merge(int[] arr, int[] leftArr, int[] rightArr, int left, int right) {
-    int i = 0, j = 0, k = 0;
-
-    // Merge arrays based on the smaller values
-    while (i < left && j < right) {
-      if (leftArr[i] <= rightArr[j]) {
-        arr[k++] = leftArr[i++];
-      }
-      else {
-        arr[k++] = rightArr[j++];
-      }
-    }
-
-    // Fill out remaining values if any
-    while (i < left) {
-      arr[k++] = leftArr[i++];
-    }
-    while (j < right) {
-      arr[k++] = rightArr[j++];
-    }
-  }
-
+	}
+	static void mergeS(int[] arr,int low,int high){
+		
+		if(low>=high){
+			return;
+		}
+		int mid=(low+high)/2;
+		mergeS(arr,low,mid);
+		mergeS(arr,mid+1,high);
+		merge(arr,low,high,mid);
+	}
 }
