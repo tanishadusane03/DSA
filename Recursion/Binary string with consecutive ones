@@ -1,0 +1,30 @@
+import java.util.List;
+import java.util.*;
+
+public class Solution {
+    public static List< String > generateString(int N) {
+        List<String> list=new ArrayList<>();
+        if(N==0){
+            return list;
+        }
+        String s="";
+        find(s,N,list);
+        return list;
+
+    }
+     static void find(String s, int size,List<String> list) {
+        // Fix: Check if index > 0 and compare characters properly
+         if (size == 0) {
+            list.add(s);
+            return;
+        }
+        
+        // Recursively generate strings by adding '0'
+        find(s + '0', size - 1, list);
+        
+        // Recursively generate strings by adding '1' only if it doesn't violate the consecutive '1's rule
+        if (s.isEmpty() || s.charAt(s.length() - 1) != '1') {
+            find(s + '1', size - 1, list);
+        }
+    }
+}
