@@ -1,0 +1,26 @@
+class Solution {
+    public int countSquares(int[][] mat) {
+        int n=mat.length;
+        int m=mat[0].length;
+        int[][] vis=new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if((i==0 || j==0) && mat[i][j]==1){
+                    vis[i][j]=1;
+                }
+
+                if(mat[i][j]==1 && i!=0 && j!=0){
+            vis[i][j]=Math.min(Math.min(vis[i-1][j],vis[i-1][j-1]),vis[i][j-1])+1;
+                }
+            }
+        }
+        int sum=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                sum=sum+vis[i][j];
+            }
+        }
+        return sum;
+        
+    }
+}
