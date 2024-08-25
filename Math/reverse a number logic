@@ -1,0 +1,35 @@
+import java.util.* ;
+import java.io.*; 
+
+
+/*
+	Time Complexity: O(log N to the base 10)
+	Space Complexity: O(1)
+	
+	Where N is the given input.
+*/
+
+public class Solution {
+	public static long reverseNumber(long n) {
+
+		// Remove all trailing zeros
+		while (n % 10 == 0) {
+			n = n / 10;
+		}
+
+		// Declare reverseNum and remainder and initialize them with 0
+		long reverseNum = 0;
+		long reminder = 0;
+
+		while (n > 0) {
+			reminder = (int) (n % 10);
+			reverseNum = reverseNum * 10 + reminder;
+			n = n / 10;
+		}
+
+		// Return the reverse number
+		return reverseNum;
+	}
+
+}
+
