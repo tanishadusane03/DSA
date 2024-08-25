@@ -1,0 +1,25 @@
+class Solution {
+    public int maximalSquare(char[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int max = 0;
+
+        // Iterate through the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (mat[i][j] == '1') {
+                    if (i == 0 || j == 0) {
+                        // Edge case: first row or first column
+                        mat[i][j] = '1'; 
+                    } else {
+                        // Update the matrix to store the size of the largest square ending at (i, j)
+                        mat[i][j] = (char) (Math.min(Math.min(mat[i - 1][j] - '0', mat[i][j - 1] - '0'), mat[i - 1][j - 1] - '0') + 1 + '0');
+                    }
+                    // Update the max square size
+                    max = Math.max(max, mat[i][j] - '0');
+                }
+            }
+        }
+        return max * max; // Return the area of the largest square
+    }
+}
