@@ -1,0 +1,55 @@
+import java.util.*;
+public class Solution 
+{
+    public static int getTotalIslands(int[][] mat) 
+	{
+        int m=mat.length;
+        int n=mat[0].length;
+        int[][] vis=new int[m][n];
+        int count=0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(vis[i][j]==0 && mat[i][j]==1){
+                    count++;
+                    bfs(i,j,vis,mat);
+
+                }
+            }
+        }
+        return count;
+    }
+
+    static void bfs(int r,int c,int[][] vis,int[][] mat){
+        Queue<Pair> q=new LinkedList<>();
+        q.offer(new Pair(r,c));
+        vis[r][c]=1;
+        int m=mat.length;
+        int n=mat[0].length;
+
+        while(!q.isEmpty()){
+            int cr=q.peek().row;
+            int cc=q.peek().col;
+            q.poll();
+             for(int dir=-1;dir<=1;dir++){
+            for(int dic=-1;dic<=1;dic++){
+                int delrow=cr+dir;
+                int delcol=cc+dic;
+            if(delrow<m && delrow>=0 && delcol>=0 && delcol<n && vis[delrow][delcol]==0 && mat[delrow][delcol]==1){
+                vis[delrow][delcol]=1;
+                q.offer(new Pair(delrow,delcol));
+            }
+            }
+        }
+        }  
+
+
+    }
+}
+class Pair{
+    int row;
+    int col;
+    Pair(int _row,int _col){
+        row=_row;
+        col=_col;
+    }
+}
