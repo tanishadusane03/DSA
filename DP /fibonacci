@@ -1,0 +1,21 @@
+class Solution {
+    public int fib(int n) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        map.put(0,0);
+        map.put(1,1);
+        int val=findfib(n,map);
+        return val;
+        
+    }
+    static int findfib(int n,HashMap<Integer,Integer> map){
+        int sum=0;
+        if(n<=1){
+            return n;
+        }
+        if(map.containsKey(n)){
+            return map.get(n);
+        }
+        return findfib(n-1,map)+findfib(n-2,map);
+    
+    }
+}
