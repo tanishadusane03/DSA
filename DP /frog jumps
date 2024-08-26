@@ -1,0 +1,18 @@
+//{ Driver Code Starts
+
+class Solution{
+    public int minimumEnergy(int arr[],int N){
+        int[] dp=new int[N+1];
+        dp[0]=0;
+        
+        for(int i=1;i<N;i++){
+            int fs=dp[i-1]+Math.abs(arr[i]-arr[i-1]);
+            int ss=Integer.MAX_VALUE;
+            if(i>1){
+                ss=dp[i-2]+Math.abs(arr[i]-arr[i-2]);
+            }
+            dp[i]=Math.min(fs,ss);
+        }
+        return dp[N-1];
+    }
+}
