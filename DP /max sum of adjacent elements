@@ -1,0 +1,29 @@
+MEMOIZATION approach 
+class Solution {
+    public int rob(int[] nums) {
+        int n=nums.length;
+        int val=find(n-1,nums);
+        return val;
+    }
+    int find(int i, int[] nums){
+        int n=nums.length;
+        if(i==0){
+            return nums[0];
+        }
+        if(i<0){
+            return 0; //negative
+        }
+        int[] dp=new int[n];
+        for(int in=0;in<n;in++){
+            dp[in]=-1;
+        }
+
+        if(dp[i]!=-1){
+            return dp[i];
+        }
+        int pick=nums[i]+find(i-2,nums);
+        int np=0+find(i-1,nums);
+        dp[i]=Math.max(pick,np);
+        return dp[i];
+    }
+}
