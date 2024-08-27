@@ -27,3 +27,27 @@ class Solution {
         return dp[i];
     }
 }
+TABULaTION 
+
+class Solution {
+    public int rob(int[] nums) {
+        int n=nums.length;
+        int val=find(n,nums);
+        return val;
+    }
+    static int find(int n,int[] nums){
+        int[] dp=new int[n];
+        dp[0]=nums[0];
+
+       for(int i=1;i<n;i++){
+        int pick=nums[i];
+        if(i>1){
+            pick=pick+dp[i-2];
+        }
+        int np=0+dp[i-1];
+        dp[i]=Math.max(pick,np);
+       }
+        
+        return dp[n-1];
+    }
+}
