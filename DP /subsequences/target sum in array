@@ -1,0 +1,42 @@
+//{ Driver Code Starts
+import java.io.*;
+import java.util.*;
+
+class Solution{
+    static Boolean isSubsetSum(int N, int arr[], int sum){
+        int[][] dp = new int[N][sum + 1];
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        return istarg(N - 1, sum, arr, dp);
+    }
+
+    static Boolean istarg(int ind, int target, int[] arr, int[][] dp) {
+        if (target == 0) {
+            return true;
+        }
+        if (ind == 0) {
+            return arr[0] == target;
+        }
+        if (dp[ind][target] != -1) {
+            return dp[ind][target] == 1;
+        }
+
+        boolean npick = istarg(ind - 1, target, arr, dp);
+
+        boolean pick = false;
+        if (target >= arr[ind]) {
+            pick = istarg(ind - 1, target - arr[ind], arr, dp);
+        }
+
+        boolean result = pick || npick;
+
+       if (result) {
+    dp[ind][target] = 1;
+} else {
+    dp[ind][target] = 0;
+}
+
+        return result;
+    }
+}
