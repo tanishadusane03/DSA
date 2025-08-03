@@ -15,6 +15,9 @@
         return result;
     }
 }
+Time complexity: O(n)
+Space complexity: O(n)
+
 2ND approach
 public class Main {
     public static String twoSum(int n, int []arr, int target) {
@@ -29,3 +32,6 @@ public class Main {
         }
         return "NO";
     }
+The time complexity of the given twoSum method is dominated by the sorting step. Sorting the array takes O(n log n) time, where n is the size of the array. The two-pointer traversal after sorting runs in linear time, O(n), since each element is visited at most once. Therefore, the overall time complexity is O(n log n).
+
+The space complexity is O(1) because the algorithm sorts the array in place and uses only a fixed amount of additional variables (left, right, sum), regardless of the input size. No extra data structures proportional to n are used, so the space complexity is constant.
