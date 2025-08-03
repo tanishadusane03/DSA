@@ -1,0 +1,38 @@
+class Solution {
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+       int[] temp=Arrays.copyOf(nums,nums.length);
+       Arrays.sort(temp);
+        int[] ret = new int[nums.length];
+        for(int i=0;i<temp.length;i++){
+            if(!map.containsKey(temp[i])){
+                map.put(temp[i],i);
+         }
+        }
+        for(int i=0;i<nums.length;i++){
+            if(map.containsKey(nums[i])){
+                ret[i]=map.get(nums[i]);
+            }
+        }
+        return ret;
+    }
+}
+
+Time Complexity:
+- Copying the array: O(n)
+- Sorting the copied array: O(n log n)
+- Building the HashMap: O(n) (each insertion is O(1) on average)
+- Constructing the result array: O(n)
+
+Overall, the dominant term is the sorting step, so the total time complexity is O(n log n).
+
+Space Complexity:
+- Creating a copy of the array: O(n)
+- HashMap to store element-to-index mappings: O(n) in the worst case (all elements are unique)
+- Result array: O(n)
+
+Total space complexity is O(n).
+
+In summary:
+Time complexity: O(n log n)
+Space complexity: O(n)
