@@ -1,0 +1,20 @@
+class Solution {
+    public int minTimeToVisitAllPoints(int[][] points) {
+        int ans=0;
+        if(points.length<=1){
+            return ans;
+        }
+     for(int i=1;i<points.length;i++){
+        ans += Math.max(Math.abs(points[i][0]-points[i-1][0]),
+                                Math.abs(points[i][1]-points[i-1][1])
+                                );
+     }
+     return ans;
+    }
+}
+
+TC:0(n)
+SC:o(1)
+https://youtu.be/xKnKFV1HbdI?si=qG5eIjCKtspy_wdt
+
+Basically we can either go x+1,y+1 or x+1,y+1 in one move/second. SOo now we can also do this in minus. The entire point here is that when we subtract 2 distances x2-x1 and y2-y1, and the maximum of those distances in max(x2-x1,y2-y1) wil be the value that it needs to travel minimum by either horizontal or vertical or diagonal.
