@@ -1,0 +1,45 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] matrix= new int[n][n];
+        int colbeg=0;
+        int colend=n-1;
+        int rowbeg=0;
+        int rowend=n-1;
+        int count=1;
+
+        while(rowbeg <= rowend && colbeg <= colend){
+      //travel right
+      for(int j=colbeg;j<=colend;j++){
+        matrix[rowbeg][j]=count;
+        count++;
+      }
+      rowbeg++;
+      //travel down
+      for(int i=rowbeg;i<=rowend;i++){
+        matrix[i][colend]=count;
+        count++;
+      }
+      colend--;
+
+      // travel left in row 
+      if(rowbeg<=rowend){
+for(int j=colend;j>=colbeg;j--){
+        matrix[rowend][j]=count;
+        count++;
+      }
+      rowend--;
+      }
+        
+
+      //travel up 
+      if(colbeg<=colend){
+    for(int i=rowend;i>=rowbeg;i--){
+        matrix[i][colbeg]=count;
+        count++;
+      }
+      colbeg++;
+      }
+        }
+        return matrix;
+    }
+}
