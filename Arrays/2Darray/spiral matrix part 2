@@ -43,3 +43,19 @@ for(int j=colend;j>=colbeg;j--){
         return matrix;
     }
 }
+
+Time Complexity:
+- The algorithm traverses each element of the matrix exactly once.
+- Each element is assigned a value during one of the four directional traversals (right, down, left, up).
+- Since there are n^2 elements, the total number of operations is proportional to n^2.
+- Therefore, the time complexity is O(n^2).
+
+Space Complexity:
+- The algorithm uses an additional 2D array of size n x n to store the result.
+- Apart from the output matrix, only a few integer variables are used for indices and counters.
+- Hence, the auxiliary space complexity is O(n^2) due to the output matrix.
+- If considering only auxiliary space (excluding output), it is O(1).
+
+In summary:
+Time complexity: O(n^2)
+Space complexity: O(n^2) (due to the output matrix)
