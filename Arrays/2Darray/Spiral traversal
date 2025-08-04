@@ -43,3 +43,22 @@ for(int j=colend;j>=colbeg;j--){
             
     }
 }
+
+The provided code performs a spiral traversal of a 2D matrix.
+
+Time Complexity:
+- The algorithm visits each element exactly once.
+- For an m x n matrix, there are m*n elements.
+- Therefore, the total number of operations is proportional to m*n.
+- The time complexity is O(m*n).
+
+Space Complexity:
+- The additional space used is primarily for the output list that stores all elements.
+- The list will contain m*n elements.
+- Apart from the output list, only a few variables are used for indices and boundaries.
+- Therefore, the auxiliary space complexity is O(m*n) for the output list.
+- If considering only auxiliary space (excluding output), it is O(1).
+
+In summary:
+- Time complexity: O(m*n)
+- Space complexity: O(m*n) (due to the output list)
