@@ -53,3 +53,20 @@ class Pair{
         col=_col;
     }
 }
+
+Time Complexity:
+- The outer loops iterate over all cells in the grid, which takes O(m * n) time.
+- Each cell is visited at most once during BFS, thanks to the visited array.
+- During BFS, each neighboring cell is checked, but each cell is enqueued only once.
+- Therefore, the total BFS operations across all cells sum up to O(m * n).
+- Overall, the total time complexity is O(m * n).
+
+Space Complexity:
+- The visited array 'vis' requires O(m * n) space.
+- The queue used in BFS can hold at most O(m * n) elements in the worst case (if the entire grid is land).
+- The Pair class objects stored in the queue also contribute to space but are proportional to the number of enqueued elements.
+- Therefore, the total space complexity is O(m * n).
+
+In summary:
+Time complexity: O(m * n)
+Space complexity: O(m * n)
