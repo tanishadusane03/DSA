@@ -30,3 +30,21 @@ class Solution {
         return new ArrayList<>(result);
     }
 }
+The provided code implements the 3Sum problem solution using sorting and a two-pointer approach with a HashSet to avoid duplicates.
+
+Time Complexity:
+- Sorting the array takes O(n log n), where n is the length of the input array.
+- The outer loop runs approximately n times.
+- For each iteration of the outer loop, the inner while loop runs with two pointers, which in the worst case traverses the remaining array once, resulting in O(n) per iteration.
+- Therefore, the total time complexity is O(n log n) for sorting plus O(n^2) for the nested loops, resulting in overall O(n^2).
+
+Space Complexity:
+- The space used for sorting is O(1) if the sorting is in-place.
+- The HashSet `result` stores unique triplets; in the worst case, there could be O(n^2) triplets (though typically fewer).
+- The space for the output list is proportional to the number of unique triplets, which can be up to O(n^2) in the worst case.
+- Additional variables and data structures (like the temporary list for triplets) use O(1) space.
+- Overall, the space complexity is O(n^2) in the worst case due to the storage of result triplets.
+
+In summary:
+- Time complexity: O(n^2)
+- Space complexity: O(n^2)
