@@ -16,3 +16,33 @@ class Solution {
       
     }
 }
+
+
+2 pointer 
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int n=prices.length;
+        if(n<=1){
+           return 0;
+        }
+        int i=0;
+        int j=1;
+        int maxprof=0;
+        int prof=0;
+        while(i<=j && j<n){
+            if(prices[i]>=prices[j]){ //if buy day price is more ++;
+                 i=j;           
+            }
+            else{
+                prof=prices[j]-prices[i];
+                maxprof=Math.max(maxprof,prof);               
+            }
+            j++;
+        }
+        return maxprof;
+    }
+}
+
+TC:O(N)
+SC:O(1)
