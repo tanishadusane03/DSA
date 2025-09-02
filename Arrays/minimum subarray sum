@@ -1,0 +1,26 @@
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int n = nums.length;
+        int i = 0, j = 0;                   // window is [i..j]
+        int sum = 0;                        // sum of current window
+        int minLen = Integer.MAX_VALUE;     // answer tracker
+
+        while (j < n) {
+            // 1) Expand the window to the right
+            sum += nums[j];
+
+            // 2) While window sum is enough, shrink from the left to minimize length
+            while (sum >= target) {
+                minLen = Math.min(minLen, j - i + 1);
+                sum -= nums[i];             // remove leftmost element
+                i++;                        // move left boundary right
+            }
+
+            // 3) Move right boundary forward to continue exploring
+            j++;
+        }
+
+        // If no valid subarray found, return 0 (as per LeetCode convention)
+        return (minLen == Integer.MAX_VALUE) ? 0 : minLen;
+    }
+}
