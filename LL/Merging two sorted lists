@@ -1,27 +1,46 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        
-        ListNode rn=new ListNode(Integer.MIN_VALUE);
-
-        ListNode headnode=rn;
-
-        while(l1 !=null && l2 !=null){
-            if(l1.val <= l2.val){
-                rn.next=l1;
-                l1=l1.next;
-            }
-            else{
-                rn.next=l2;
-                l2=l2.next;
-            }
-            rn=rn.next;
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1 == null){
+            return list2;
         }
-        if (l1 == null) {
-            rn.next = l2;
-        } else {
-            rn.next = l1;
+        if(list2 == null){
+            return list1;
         }
+// Initialize the samller node to list1
+        if(list1.val>list2.val){
+            ListNode swap=list1 ;
+            list1 = list2;
+            list2 = swap;
+        }
+//So that we can return this as the new head 
+        ListNode res=list1;
 
-       return headnode.next;
+        while(list1!=null && list2!=null){
+            ListNode temp= null;
+            while(list1!=null && list1.val<= list2.val){
+                temp=list1;
+                list1=list1.next;
+            }
+            temp.next=list2;
+//the smaller value bw l1 and l2 should be l1
+            ListNode swap2= list1;
+            list1=list2;
+            list2=swap2;
+        }
+        return res;
     }
 }
+
+The time complexity of this mergeTwoLists method is O(n + m), where n is the length of list1 and m is the length of list2. This is because each node in both lists is visited exactly once during the merging process. The algorithm iterates through both lists simultaneously, advancing pointers as it compares node values, ensuring all nodes are processed in linear time.
+
+The space complexity is O(1), meaning it uses constant extra space. The merging is performed in-place by adjusting the next pointers of existing nodes without creating additional data structures or copies of the nodes. Only a few auxiliary variables are used for temporary references, which do not depend on the size of the input lists.
