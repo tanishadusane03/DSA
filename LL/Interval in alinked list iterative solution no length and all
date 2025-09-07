@@ -30,3 +30,6 @@ public class Solution {
     return d1;
     }
 }
+
+Time complexity: O(m + n)
+Space complexity: O(1)
