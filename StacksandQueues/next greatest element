@@ -23,3 +23,18 @@ class Solution
      return res;
     }
 }
+Time Complexity:
+- The algorithm iterates through the array once, from right to left, which is O(n).
+- Each element is pushed onto the stack at most once and popped at most once.
+- Therefore, the total number of push and pop operations is at most 2n.
+- Overall, the time complexity is O(n).
+
+Space Complexity:
+- The auxiliary space used includes:
+  - The result array of size n.
+  - The stack, which in the worst case can hold all elements of the array, i.e., size n.
+- Therefore, the space complexity is O(n).
+
+In summary:
+- Time Complexity: O(n)
+- Space Complexity: O(n)
